@@ -22,4 +22,4 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	end
 end
 
-require File.expand_path("vaprobash.rb")
+require File.expand_path("scripts/vaprobash.rb")

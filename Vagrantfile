@@ -21,3 +21,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		config.vm.provision "shell", path: afterScriptPath
 	end
 end
+
+require File.expand_path("vaprobash.rb")

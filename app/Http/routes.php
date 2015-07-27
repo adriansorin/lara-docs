@@ -9,3 +9,4 @@ Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('dashboard', ['middleware' => 'auth', 'uses' => 'DashboardController@index']);
 Route::get('document/create', ['middleware' => 'auth', 'uses' => 'DocumentController@create']);
+Route::post('document/add', ['middleware' => 'auth', 'uses' => 'DocumentController@add']);

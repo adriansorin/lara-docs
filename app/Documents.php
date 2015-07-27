@@ -18,5 +18,5 @@ class Documents extends Model
      *
      * @var array
      */
-    protected $fillable = ['content', 'owner'];
+    protected $fillable = ['title', 'content', 'owner'];
 }

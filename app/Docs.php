@@ -8,6 +8,6 @@ class Docs extends Model
 {
     protected $connection = 'mongodb';
     protected $collection = 'docs';
-    protected $fillable = ['owner', 'words', 'form', 'properties'];
+    protected $fillable = ['id_document', 'words'];
     public $timestamps = false;
 }

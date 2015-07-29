@@ -18,6 +18,12 @@
                         </div>
                     @endif
 
+                    @if (Session::has('success'))
+                        <div class="alert alert-success">
+                            {{ Session::get('success') }}
+                        </div>
+                    @endif
+
 	            	<div class="form-horizontal">
 	            		<label for="idDocument" class="col-md-3 control-label"><b>Load document for editing</b></label>
 	            		<div class="dropdown col-md-7">
@@ -25,11 +31,13 @@
 						    	Documents
 						    	<span class="caret"></span>
 						  	</button>
-						  	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						    	<li><a href="/document/create/1">Document 1</a></li>
-						    	<li><a href="/document/create/2">Document 2</a></li>
-						    	<li><a href="/document/create/3">Document 3</a></li>
-						  	</ul>
+                            @if (count($documents) > 0)
+    						  	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    @foreach ($documents as $doc)
+                                        <li><a href="/document/create/{{ $doc->id }}">{{ $doc->title }}</li>
+                                    @endforeach
+    						  	</ul>
+                            @endif
 						</div>
 					</div>
 					<br><hr><br>

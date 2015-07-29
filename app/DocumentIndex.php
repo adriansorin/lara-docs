@@ -4,10 +4,10 @@ namespace App;
 
 use Jenssegers\Mongodb\Model;
 
-class Docs extends Model
+class DocumentIndex extends Model
 {
     protected $connection = 'mongodb';
     protected $collection = 'docs';
-    protected $fillable = ['id_document', 'words'];
+    protected $fillable = ['id_document', 'words', 'title'];
     public $timestamps = false;
 }

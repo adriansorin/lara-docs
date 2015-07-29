@@ -2,36 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use Illuminate\Http\Request;
-use App\Documents;
-use App\Docs;
+use App\Jobs\CreateDocumentJob;
+use App\Repositories\Model\DocumentRepository;
+use Auth;
 
 class DocumentController extends Controller
 {
-    public function create(Request $request)
+    public function create(Request $request, DocumentRepository $documentRepo)
     {
-        return view('document.create');
+        return view('document.create', ['documents' => $documentRepo->findBy('owner', Auth::user()->id, ['id', 'title'])]);
     }
 
     public function add(Request $request)
     {
-    	$res['words'] = str_word_count(strip_tags($request->input('content')), 1);
+        $this->validate($request, [
+            'title' => 'required|unique:documents|max:255',
+            'content' => 'required',
+        ]);
 
-        $doc = [
-            'content' => $request->input('content'),
-            'owner' => Auth::user()->id,
-            'title' => $request->input('title')
-        ];
+        $this->dispatch(new CreateDocumentJob($request->input('title'), $request->input('content')));
 
-        $document = Documents::create($doc);
-
-        if ($document->id) {
-        	$res['id_document'] = $document->id;
-
-        	Docs::create($res);
-        }
-
-        return redirect()->route('document/create');
+        return redirect()->to('document/create')->with('success', 'Succesfully added document!');
     }
 }

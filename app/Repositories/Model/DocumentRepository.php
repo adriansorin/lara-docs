@@ -24,6 +24,11 @@ class DocumentRepository implements RepositoryInterface
         return $this->document->create($data);
     }
 
+    public function update(array $data, $id)
+    {
+        return $this->document->where(['id' => $id])->update($data);
+    }
+
     public function delete($id)
     {
 
@@ -31,7 +36,7 @@ class DocumentRepository implements RepositoryInterface
 
     public function find($id, $columns = array('*'))
     {
-
+        return $this->document->find($id, $columns);
     }
 
     public function findBy($field, $value, $columns = array('*'))

@@ -24,6 +24,11 @@ class DocumentIndexRepository implements RepositoryInterface
         return $this->documentIndex->create($data);
     }
 
+    public function update(array $data, $id)
+    {
+        return $this->documentIndex->where(['id_document' => intval($id)])->update($data, ['upsert' => true]);
+    }
+
     public function delete($id)
     {
 

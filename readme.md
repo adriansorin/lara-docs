@@ -6,3 +6,4 @@ Install LaraDocs App:
 4. Copy .env.example to a new file .env
 5. SSH into vagrant machine (ssh vagrant@localhost -p 2222)
 6. Run command: php artisan migrate
+7. Add the following to hosts file: 192.168.10.10	laradocs.app

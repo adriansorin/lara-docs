@@ -31,20 +31,14 @@ class UpdateDocumentJob extends Job implements SelfHandling
      *
      * @return void
      */
-    public function handle(DocumentRepository $documentRepo, DocumentIndexRepository $documentIndexRepo)
+    public function handle(DocumentIndexRepository $documentIndexRepo)
     {
         $document = [
             'content' => $this->content,
-            'title' => $this->title
+            'title' => $this->title,
+            'words' => str_word_count(strip_tags($this->content), 1)
         ];
 
-        $updateDoc = $documentRepo->update($document, $this->id);
-
-        if ($updateDoc) {
-            $index['words'] = str_word_count(strip_tags($this->content), 1);
-            $index['title'] = $this->title;
-
-            $mongoDoc = $documentIndexRepo->update($index, $this->id);
-        }
+        $documentIndexRepo->update($document, $this->id);
     }
 }

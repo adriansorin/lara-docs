@@ -8,6 +8,6 @@ class DocumentIndex extends Model
 {
     protected $connection = 'mongodb';
     protected $collection = 'docs';
-    protected $fillable = ['id_document', 'words', 'title'];
+    protected $fillable = ['title', 'owner', 'content', 'words'];
     public $timestamps = false;
 }

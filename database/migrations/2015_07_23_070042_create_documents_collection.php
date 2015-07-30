@@ -12,7 +12,10 @@ class CreateDocumentsCollection extends Migration
      */
     public function up()
     {
-        Schema::connection('mongodb')->create('docs', function ($collection) {});
+        Schema::connection('mongodb')->create('docs', function ($collection) {
+            $collection->index('words');
+            $collection->unique('title');
+        });
     }
 
     /**

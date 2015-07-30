@@ -6,6 +6,8 @@ interface RepositoryInterface
 {
     public function paginate($perPage = 15, $columns = array('*'));
 
+    public function paginateCriteria($perPage = 15, $field, $value, $columns = array('*'));
+
     public function create(array $data);
 
     public function delete($id);

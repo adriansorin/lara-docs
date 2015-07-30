@@ -9,5 +9,7 @@ Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('dashboard', ['middleware' => 'auth', 'uses' => 'DashboardController@index']);
 Route::get('document/create/{id?}', ['middleware' => 'auth', 'uses' => 'DocumentController@create']);
+Route::get('document/show/{id}', ['middleware' => 'auth', 'uses' => 'DocumentController@show']);
 Route::post('document/add', ['middleware' => 'auth', 'uses' => 'DocumentController@add']);
 Route::post('document/update/{id}', ['middleware' => 'auth', 'uses' => 'DocumentController@update']);
+Route::get('dashboard/search', ['middleware' => 'auth', 'uses' => 'DashboardController@search']);

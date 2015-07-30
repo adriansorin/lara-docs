@@ -16,7 +16,12 @@ class DocumentIndexRepository implements RepositoryInterface
 
     public function paginate($perPage = 15, $columns = array('*'))
     {
+        return $this->documentIndex->paginate($perPage, $columns);
+    }
 
+    public function paginateCriteria($perPage = 15, $field, $value, $columns = array('*'))
+    {
+        return $this->documentIndex->where([$field => $value])->paginate($perPage, $columns);
     }
 
     public function create(array $data)
@@ -26,21 +31,25 @@ class DocumentIndexRepository implements RepositoryInterface
 
     public function update(array $data, $id)
     {
-        return $this->documentIndex->where(['id_document' => intval($id)])->update($data, ['upsert' => true]);
+        return $this->documentIndex->where(['_id' => $id])->update($data, ['upsert' => true]);
     }
 
     public function delete($id)
     {
-
+        return $this->documentIndex->destroy($id);
     }
 
     public function find($id, $columns = array('*'))
     {
-
+        return $this->documentIndex->find($id, $columns);
     }
 
     public function findBy($field, $value, $columns = array('*'))
     {
+        if (is_int($value)) {
+            $value = intval($value);
+        }
 
+        return $this->documentIndex->where([$field => $value])->get($columns);
     }
 }
